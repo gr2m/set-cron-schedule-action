@@ -1,0 +1,31 @@
+{
+  "name": "iterate-cron-action",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GitHub Action to notify repositories about the repository's releases using a GitHub App",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist"
+  },
+  "repository": "github:gr2m/iterate-cron-action",
+  "keywords": [
+    "github-action"
+  ],
+  "author": "Gregor Martynus (https://twitter.com/gr2m)",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.7",
+    "dayjs": "^1.10.5",
+    "js-yaml": "^4.1.0",
+    "octokit": "^1.0.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.28.6",
+    "nock": "^13.1.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  }
+}
