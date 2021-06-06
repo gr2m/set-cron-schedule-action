@@ -4,6 +4,9 @@ branding:
   icon: "clock"
   color: purple
 inputs:
+  token:
+    description: 'Personal access token with "workflow" scope'
+    required: true
   crons:
     description: "List of cron expressions separated by line breaks"
     required: true

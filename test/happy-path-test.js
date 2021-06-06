@@ -6,9 +6,9 @@ nock.disableNetConnect();
 
 process.env = {
   ...process.env,
-  GITHUB_TOKEN: "secret",
   GITHUB_REPOSITORY: "gr2m/iterate-cron-action",
   GITHUB_WORKFLOW: "Reminder",
+  INPUT_TOKEN: "secret",
   INPUT_CRONS: ["0 10 * * 2", "0 15 * * 4"].join("\n"),
 };
 

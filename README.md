@@ -10,6 +10,8 @@
 
 Notify users only when a release was published. The [repository dispatch event type](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-a-repository-dispatch-event) is set to `[current repositories full name] release` (e.g. `gr2m/release-notifire action`)
 
+Note that [`${{ secrets.GITHUB_TOKEN}}`](https://docs.github.com/en/actions/reference/authentication-in-a-workflow) cannot be used for authentication, as it lacks the permission to update files in `.github/workflows/`. You need to [create a personal access token with the `workflow` scope](https://github.com/settings/tokens/new?scopes=workflow) and save it in your repository's secrets as `PAT_WITH_WORKFLOW_SCOPE` in order to make the example below work.
+
 ```yml
 name: Do the thing
 on:
@@ -22,7 +24,8 @@ jobs:
     steps:
       - run: do-the-thing.sh
       - uses: gr2m/iterate-cron-action@v1
-      - with:
+        with:
+          token: ${{ secrets.PAT_WITH_WORKFLOW_SCOPE }}
           crons: |
             0 10 * * 2
             0 15 * * 4

@@ -15,13 +15,14 @@ module.exports = main().catch((error) => {
 
 async function main() {
   const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+  const token = core.getInput("token");
   const cronExpressions = core.getInput("crons").split("\n");
   const message =
     core.getInput("message") ||
     "ci($WORKFLOW_NAME): update cron expression to `$CRON_EXPRESSION`";
 
   const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
+    auth: token,
     userAgent: "iterate-cron-action",
     retry: { enabled: false },
   });
@@ -58,7 +59,7 @@ async function main() {
   workflow.on.schedule[0].cron = nextExpression;
 
   const newContent = yaml.dump(workflow, {
-    quotingType: '"'
+    quotingType: '"',
   });
 
   // update workflow file
@@ -70,7 +71,7 @@ async function main() {
     message: message
       .replace("$WORKFLOW_NAME", process.env.GITHUB_WORKFLOW)
       .replace("$CRON_EXPRESSION", nextExpression),
-    sha: data.sha
+    sha: data.sha,
   });
 
   console.log("workflowfile updated");
