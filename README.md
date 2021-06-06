@@ -4,6 +4,18 @@
 
 [![Build Status](https://github.com/gr2m/iterate-cron-action/workflows/Test/badge.svg)](https://github.com/gr2m/iterate-cron-action/actions)
 
+## 🤦‍♂️
+
+After creating this action, I realized it's kinda useless, because you can simply set multiple cron expressions like this:
+
+```yml
+name: Reminder
+on:
+  schedule:
+    - cron: "0 10 * * 2"
+    - cron: "0 15 * * 4"
+```
+
 ## Usage
 
 [cron expressions](https://en.wikipedia.org/wiki/Cron#CRON_expression) are powerful, but if you want to run a task on Tuesday morning at 10am and Thursday afternoon at 3pm each week, you are out of luck. This action persmits you to set a list of cron expressions, by iterating through a provided list each time the workflow is run and updating the workflow file itself
