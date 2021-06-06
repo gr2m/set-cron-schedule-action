@@ -1,0 +1,14 @@
+name: Reminder
+"on":
+  schedule:
+    - cron: 0 10 * * 2
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: do-the-thing.sh
+      - uses: gr2m/iterate-cron-action@v1
+      - with:
+          crons: |
+            0 10 * * 2
+            0 15 * * 4
