@@ -17,8 +17,5 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - uses: ./
-        with:
-          crons: |
-            0 12 * * *
-            0 0 * * *
+      - run: npm run build
+      - uses: node test/happy-path-test.js
