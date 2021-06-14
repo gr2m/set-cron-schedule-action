@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: do-the-thing.sh
-      - uses: gr2m/set-cron-schedule-action@v1
+      - uses: gr2m/set-cron-schedule-action@v2
         with:
           token: ${{ secrets.PAT_WITH_WORKFLOW_SCOPE }}
           cron: |

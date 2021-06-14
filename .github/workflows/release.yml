@@ -23,6 +23,6 @@ jobs:
           rm .gitignore
           git add .gitignore dist
           git commit -m "release"
-      - run: "git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v1"
+      - run: "git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v2"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
