@@ -1,15 +1,17 @@
 const { readFileSync } = require("fs");
 
 const nock = require("nock");
+const main = require("../lib/main");
 
+nock.cleanAll();
 nock.disableNetConnect();
 
 process.env = {
   ...process.env,
-  GITHUB_REPOSITORY: "gr2m/iterate-cron-action",
+  GITHUB_REPOSITORY: "gr2m/set-cron-schedule-action",
   GITHUB_WORKFLOW: "Reminder",
   INPUT_TOKEN: "secret",
-  INPUT_CRONS: ["0 10 * * 2", "0 15 * * 4"].join("\n"),
+  INPUT_CRON: "1 19 14 6 *",
 };
 
 nock("https://api.github.com", {
@@ -17,7 +19,7 @@ nock("https://api.github.com", {
     authorization: "token secret",
   },
 })
-  .get("/repos/gr2m/iterate-cron-action/actions/workflows")
+  .get("/repos/gr2m/set-cron-schedule-action/actions/workflows")
   .reply(200, [
     {
       name: "Reminder",
@@ -26,7 +28,7 @@ nock("https://api.github.com", {
   ])
 
   .get(
-    "/repos/gr2m/iterate-cron-action/contents/.github%2Fworkflows%2Freminder.yml"
+    "/repos/gr2m/set-cron-schedule-action/contents/.github%2Fworkflows%2Freminder.yml"
   )
   .reply(200, {
     content: readFileSync("./test/fixtures/reminder.yml", "base64"),
@@ -34,13 +36,13 @@ nock("https://api.github.com", {
   })
 
   .put(
-    "/repos/gr2m/iterate-cron-action/contents/.github%2Fworkflows%2Freminder.yml",
+    "/repos/gr2m/set-cron-schedule-action/contents/.github%2Fworkflows%2Freminder.yml",
     {
       content: readFileSync("./test/fixtures/reminder-updated.yml", "base64"),
-      message: "ci(Reminder): update cron expression to `0 15 * * 4`",
+      message: "ci(Reminder): update cron schedule: 1 19 14 6 *",
       sha: "sha123",
     }
   )
   .reply(201);
 
-require("..");
+module.exports = main();

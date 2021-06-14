@@ -17,5 +17,4 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm run build
-      - run: node test/happy-path-test.js
+      - run: npm test

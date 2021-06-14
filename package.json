@@ -1,13 +1,15 @@
 {
-  "name": "iterate-cron-action",
+  "name": "set-cron-schedule-action",
   "private": true,
   "version": "1.0.0",
-  "description": "GitHub Action to notify repositories about the repository's releases using a GitHub App",
+  "description": "Set the cron schedule for a GitHub Action",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js -o dist"
+    "build": "ncc build index.js -o dist",
+    "test": "tap test/index.js",
+    "coverage": "npx tap --coverage-report=html"
   },
-  "repository": "github:gr2m/iterate-cron-action",
+  "repository": "github:gr2m/set-cron-schedule-action",
   "keywords": [
     "github-action"
   ],
@@ -16,12 +18,14 @@
   "dependencies": {
     "@actions/core": "^1.2.7",
     "dayjs": "^1.10.5",
+    "dotenv": "^10.0.0",
     "js-yaml": "^4.1.0",
     "octokit": "^1.0.5"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.28.6",
-    "nock": "^13.1.0"
+    "nock": "^13.1.0",
+    "tap": "^15.0.9"
   },
   "release": {
     "branches": [

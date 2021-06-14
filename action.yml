@@ -1,5 +1,5 @@
-name: Iterate Cron
-description: "Updates the current GitHub Action workflow's cron trigger based on a list of cron expressions"
+name: Set cron schedule
+description: "Set the cron schedule for a GitHub Action"
 branding:
   icon: "clock"
   color: purple
@@ -7,11 +7,14 @@ inputs:
   token:
     description: 'Personal access token with "workflow" scope'
     required: true
-  crons:
-    description: "List of cron expressions separated by line breaks"
+  cron:
+    description: "cron schedule expression (UTC Timezone). Set multiple schedules by separating by line breaks"
     required: true
+  workflow:
+    description: "ID or filename of workflow to be updated. Defaults to the current workflow."
+    required: false
   message:
-    description: 'Commit message. You can use $WORKFLOW_NAME and $CRON_EXPRESSION placeholders. Defaults to "ci($WORKFLOW_NAME): update cron expression to `$CRON_EXPRESSION`"'
+    description: 'Commit message. You can use $WORKFLOW_NAME and $CRON_SCHEDULE placeholders. Defaults to "ci($WORKFLOW_NAME): update cron schedule: $CRON_EXPRESSIONS"'
     required: false
 runs:
   using: "node12"
