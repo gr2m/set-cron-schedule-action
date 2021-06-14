@@ -19,4 +19,4 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.GR2M_PAT_WITH_WORKFLOW_SCOPE }}
-          cron: ${{ github.event.inputs.cron }
+          cron: ${{ github.event.inputs.cron }}
