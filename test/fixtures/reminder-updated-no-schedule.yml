@@ -1,0 +1,8 @@
+name: Reminder
+on:
+  schedule: []
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: do-the-thing.sh
