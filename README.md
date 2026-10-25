@@ -10,7 +10,7 @@
 
 With this action, you can programmatically update the cron schedule for an action. So instead of running your action frequently and then checking if there is anything to do, you can schedule the action to run on a specific date, then update the schedule to run on another date.
 
-Note that [`${{ secrets.GITHUB_TOKEN}}`](https://docs.github.com/en/actions/reference/authentication-in-a-workflow) cannot be used for authentication, as it lacks the permission to update files in `.github/workflows/`. You need to [create a personal access token with the `workflow` scope](https://github.com/settings/tokens/new?scopes=workflow) and save it in your repository's secrets as `PAT_WITH_WORKFLOW_SCOPE` in order to make the example below work.
+Note that [`${{ secrets.GITHUB_TOKEN }}`](https://docs.github.com/en/actions/reference/authentication-in-a-workflow) cannot be used for authentication, as it lacks the permission to update files in `.github/workflows/`. You need to [create a personal access token with the `workflow` scope](https://github.com/settings/tokens/new?scopes=workflow) and save it in your repository's secrets as `PAT_WITH_WORKFLOW_SCOPE` in order to make the example below work.
 
 ```yml
 name: Reminder
